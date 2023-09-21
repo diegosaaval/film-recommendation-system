@@ -17,3 +17,14 @@ UPDATE ratings SET movieId = 147002 WHERE movieId = 32600;
 UPDATE ratings SET movieId = 2851 WHERE movieId = 168358;
 UPDATE ratings SET movieId = 34048 WHERE movieId = 64997;
 
+--Crear tabla llamada full_table con movies_clean y ratings con llave movieId
+DROP TABLE IF EXISTS full_table;
+CREATE TABLE full_table AS 
+SELECT movies_clean.movieId
+    , movies_clean.title
+    , movies_clean.genres
+    , ratings.userId
+    , ratings.rating
+    , ratings.timestamp
+FROM movies_clean 
+LEFT JOIN ratings ON movies_clean.movieId = ratings.movieId;
